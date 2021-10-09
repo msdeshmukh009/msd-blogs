@@ -1,5 +1,5 @@
 import { useState,useEffect } from "react";
-const useFectch = (url) =>{
+const useFetch = (url) =>{
     const [data, setData] = useState(null);
     const [isPending,setIsPending] = useState(true);
     const [error,setError] = useState(null);
@@ -7,7 +7,10 @@ const useFectch = (url) =>{
         // npx json-server --watch data/db.json --port 8000
         const abortCont = new AbortController();
         setTimeout(()=>{
-          fetch(url, { signal: abortCont.signal })
+          fetch(url, { signal: abortCont.signal, method:'GET',headers:{
+            'content-type':'application/json'
+          }  })
+          
           .then(res => {
             // console.log(res)
             if(!res.ok){
@@ -36,4 +39,4 @@ const useFectch = (url) =>{
       }, [url])
       return{data,isPending,error}
 }
-export default useFectch;
+export default useFetch;
