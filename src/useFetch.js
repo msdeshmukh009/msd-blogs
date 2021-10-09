@@ -4,6 +4,7 @@ const useFectch = (url) =>{
     const [isPending,setIsPending] = useState(true);
     const [error,setError] = useState(null);
     useEffect(() => {
+        // npx json-server --watch data/db.json --port 8000
         const abortCont = new AbortController();
         setTimeout(()=>{
           fetch(url, { signal: abortCont.signal })
